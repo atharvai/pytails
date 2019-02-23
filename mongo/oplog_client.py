@@ -160,21 +160,7 @@ class OplogClient(TailClient):
 
         doc_doc_ = {'doc': doc}
         if self.options['full_doc']:
-            # query the full document and return it
-            oid = None
-            if doc['op'] in ['i', 'd']:
-                oid = doc['o']['_id']
-            elif doc['op'] == 'u':
-                oid = doc['o2']['_id']
-
-            if oid:
-                full_doc = self._client.get_database(doc['ns'].split('.')[0]).get_collection(
-                    doc['ns'].split('.')[1]).find_one({'_id': oid})
-                if self.options['timestamp_suffix']:
-                    full_doc = {'ts': bson_timestamp_to_int(doc['ts']), 'doc': full_doc}
-                else:
-                    full_doc = {'doc': full_doc}
-                self.write_to_sink(full_doc)
+            self._process_doc_full(doc)
         else:
             # return oplog without modifications
             self.write_to_sink(doc_doc_)
@@ -182,6 +168,22 @@ class OplogClient(TailClient):
         if self._doc_counter >= 500:
             self.checkpoint(doc_doc_)
             self._doc_counter = 0
+
+    def _process_doc_full(self, doc):
+        # query the full document and return it
+        oid = None
+        if doc['op'] in ['i', 'd']:
+            oid = doc['o']['_id']
+        elif doc['op'] == 'u':
+            oid = doc['o2']['_id']
+        if oid:
+            full_doc = self._client.get_database(doc['ns'].split('.')[0]).get_collection(
+                doc['ns'].split('.')[1]).find_one({'_id': oid})
+            if self.options['timestamp_suffix']:
+                full_doc = {'ts': bson_timestamp_to_int(doc['ts']), 'doc': full_doc}
+            else:
+                full_doc = {'doc': full_doc}
+            self.write_to_sink(full_doc)
 
     def stop_tail(self):
         """

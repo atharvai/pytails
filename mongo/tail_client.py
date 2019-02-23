@@ -2,6 +2,7 @@ import abc
 import platform
 import signal
 from datetime import datetime
+from threading import Timer
 
 from bson import Timestamp
 
@@ -19,6 +20,7 @@ class TailClient(metaclass=abc.ABCMeta):
     _data_sinks = set()
     _checkpoint_store = None
     _client = None
+    _checkpoint_timer = None
     ts = Timestamp(datetime.utcnow(), 1)
     identifier = None
 
@@ -26,6 +28,7 @@ class TailClient(metaclass=abc.ABCMeta):
         self.identifier = cluster + ':' + replica_set
         self.__set_interrupt_handler()
         self.register_checkpoint_store(DynamoDbStore(cluster, replica_set))
+        self._checkpoint_timer = Timer(60, self.checkpoint)
         # self.register_checkpoint_store(NullStore())
 
     def checkpoint(self, doc: dict = None):
