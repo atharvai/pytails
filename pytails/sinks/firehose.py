@@ -4,7 +4,7 @@ import boto3
 from botocore.exceptions import ClientError
 from bson import json_util
 
-from sinks import Sink
+from .sink import Sink
 
 
 class FirehoseSink(Sink):

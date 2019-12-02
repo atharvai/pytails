@@ -1,6 +1,6 @@
 import unittest
 
-from pytails.pytails.helpers.bson_utils import bson_timestamp_to_int, int_to_bson_timestamp
+from pytails.helpers.bson_utils import bson_timestamp_to_int, int_to_bson_timestamp
 from datetime import datetime
 from bson import Timestamp
 

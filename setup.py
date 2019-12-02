@@ -5,4 +5,5 @@ setup(name='pyTails',
       description='Python DB tailer',
       author='Atharva Inamdar',
       packages=['pytails'],
+      scripts=['pytails.py']
      )

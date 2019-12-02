@@ -4,8 +4,8 @@ import boto3
 from botocore.exceptions import ClientError
 
 import logging
-from helpers.bson_utils import int_to_bson_timestamp
-from state.store import StateStore
+from ..helpers.bson_utils import int_to_bson_timestamp
+from .store import StateStore
 
 logger = logging.getLogger(__name__)
 
