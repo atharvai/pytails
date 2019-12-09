@@ -6,4 +6,4 @@ setup(name='pyTails',
       author='Atharva Inamdar',
       packages=['pytails'],
       scripts=['pytails.py']
-     )
+      )
