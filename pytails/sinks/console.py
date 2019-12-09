@@ -2,7 +2,7 @@ from bson import json_util
 from bson.json_util import JSONOptions, DatetimeRepresentation, JSONMode
 
 import logging
-from sinks import Sink
+from .sink import Sink
 
 logger = logging.getLogger(__name__)
 
