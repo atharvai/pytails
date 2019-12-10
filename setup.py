@@ -6,5 +6,5 @@ setup(name='pyTails',
       author='Atharva Inamdar',
       packages=['pytails'],
       scripts=['pytails.py'],
-      setup_requires=['wheel']
+      python_requires='>=3.6, <3.8'
       )
