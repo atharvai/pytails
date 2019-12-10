@@ -6,8 +6,8 @@ from pymongo import MongoClient, CursorType
 from pymongo.errors import AutoReconnect, ServerSelectionTimeoutError
 
 import logging
-from helpers.bson_utils import bson_timestamp_to_int, int_to_bson_timestamp
-from mongo.tail_client import TailClient
+from ..helpers.bson_utils import bson_timestamp_to_int, int_to_bson_timestamp
+from .tail_client import TailClient
 
 logger = logging.getLogger(__name__)
 

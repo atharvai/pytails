@@ -1,12 +1,14 @@
+#!/usr/bin/env python
+
 import argparse
 import os
 
 import logging
 import sys
 
-from mongo import OplogClient
-from sinks import ConsoleSink, KinesisSink, FirehoseSink
-from state.ddb_store import DynamoDbStore
+from pytails.mongo import OplogClient
+from pytails.sinks import ConsoleSink, KinesisSink, FirehoseSink
+from pytails.state.ddb_store import DynamoDbStore
 
 logger = logging.getLogger(__name__)
 

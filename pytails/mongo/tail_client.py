@@ -5,11 +5,11 @@ from datetime import datetime
 
 from bson import Timestamp
 
-from helpers.bson_utils import bson_timestamp_to_int
+from ..helpers.bson_utils import bson_timestamp_to_int
 import logging
-from sinks import Sink
-from state import NullStore, DynamoDbStore
-from state.store import StateStore
+from ..sinks import Sink
+from ..state import NullStore, DynamoDbStore
+from ..state.store import StateStore
 
 logger = logging.getLogger(__name__)
 
