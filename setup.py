@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='pyTails',
-      version='1.0.0',
+      version='0.0.1',
       description='Python DB tailer',
       author='Atharva Inamdar',
       packages=['pytails'],
