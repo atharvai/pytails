@@ -1,10 +1,12 @@
 from distutils.core import setup
 
+from setuptools import find_packages
+
 setup(name='pyTails',
-      version='0.0.2',
+      version='0.0.3',
       description='Python DB tailer',
       author='Atharva Inamdar',
-      packages=['pytails'],
+      packages=find_packages('.'),
       entry_points={
           'console_scripts': ['pytails=pytails.pytails:main'],
       },
