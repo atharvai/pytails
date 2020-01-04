@@ -5,6 +5,8 @@ setup(name='pyTails',
       description='Python DB tailer',
       author='Atharva Inamdar',
       packages=['pytails'],
-      scripts=['pytails.py'],
+      entry_points={
+          'console_scripts': ['pytails=pytails.pytails:main'],
+      },
       python_requires='>=3.6, <3.8'
       )
